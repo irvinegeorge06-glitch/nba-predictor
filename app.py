@@ -909,4 +909,6 @@ if __name__ == "__main__":
         print(f"   Training ML model on {len(history)} games...")
         ml_model_data = train_model(history)
         print("   Model ready.\n")
-    app.run(debug=False, port=8080, threaded=True)
+    if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+    app.run(debug=False, host="0.0.0.0", port=port, threaded=True)

@@ -909,4 +909,4 @@ if __name__ == "__main__":
         print(f"   Training ML model on {len(history)} games...")
         ml_model_data = train_model(history)
         print("   Model ready.\n")
-    app.run(debug=False, port=5000, threaded=True)
+    app.run(debug=False, port=8080, threaded=True)

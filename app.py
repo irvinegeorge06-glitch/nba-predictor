@@ -902,13 +902,5 @@ def api_retrain():
     return jsonify({"success": True, "metrics": ml_model_data["metrics"]})
 
 if __name__ == "__main__":
-    print("\n🏀 NBA Predictor v2 — Quant Edition")
-    print("   Open http://localhost:5000\n")
-    history = load_history()
-    if len(history) >= 50 and not ml_model_data:
-        print(f"   Training ML model on {len(history)} games...")
-        ml_model_data = train_model(history)
-        print("   Model ready.\n")
-    if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     app.run(debug=False, host="0.0.0.0", port=port, threaded=True)

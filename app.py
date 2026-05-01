@@ -3,7 +3,7 @@ NBA Predictor v2 — Quant-Grade
 Run: python app.py  →  open http://localhost:5000
 """
 
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, jsonify, request
 import requests
 import json
 import time
@@ -236,7 +236,7 @@ def predict_game(game):
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return HTML_PAGE
 
 @app.route("/api/games")
 def api_games():

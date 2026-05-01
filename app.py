@@ -236,7 +236,7 @@ def predict_game(game):
 
 @app.route("/")
 def index():
-    return HTML_PAGE
+    return HTML_PAGE, 200, {'Content-Type': 'text/html'}
 
 @app.route("/api/games")
 def api_games():

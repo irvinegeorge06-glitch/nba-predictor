@@ -962,9 +962,27 @@ def api_model():
     })
 
 # ── STARTUP ───────────────────────────────────────────────────────────────────
+def background_updater():
+    """Runs every 2 hours to catch completed games even with no site visitors."""
+    import time
+    while True:
+        try:
+            games = get_todays_games()
+            if games:
+                process_completed_games(games)
+                print(f"Background update: checked {len(games)} games")
+        except Exception as e:
+            print(f"Background updater error: {e}")
+        time.sleep(7200)  # every 2 hours
+
 if __name__ == "__main__":
     print("\n🏀 NBA Predictor v3 — PostgreSQL Edition")
     init_db()
     init_state()
+    # Start background updater thread
+    import threading
+    updater = threading.Thread(target=background_updater, daemon=True)
+    updater.start()
+    print("Background updater started (checks every 2 hours)")
     port = int(os.environ.get("PORT", 8080))
     app.run(debug=False, host="0.0.0.0", port=port, threaded=True)
